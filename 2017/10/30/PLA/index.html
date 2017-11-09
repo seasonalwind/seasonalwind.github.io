@@ -87,21 +87,21 @@
 <meta property="og:site_name" content="思行合一">
 <meta property="og:description" content="PS：本文主要基于台湾大学林轩田教授“机器学习基石”课程整理： 最简单的线性分类器——感知机（Perceptron）中学物课的时候相信大家都接触过“神经元”的概念，每一个神经元与其他神经元相连，当神经元“兴奋”时，就会向相连的神经元发送化学物质， 从而改变神经元内的电位，如果某个神经元的电位超过一个阈值（threshold），那么它就会被激活（“兴奋”），1943年，McCulloch和Pitts">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/m-p-model.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f1.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f2.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f3.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f4.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f5.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f6.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f7.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f8.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/30/images/PLA/f9.png">
-<meta property="og:updated_time" content="2017-11-08T13:20:40.653Z">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/m-p-model.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f1.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f2.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f3.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f4.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f5.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f6.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f7.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f8.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/30/PLA/f9.png">
+<meta property="og:updated_time" content="2017-11-09T05:09:59.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Perceptron Learning Algorithm （1）">
 <meta name="twitter:description" content="PS：本文主要基于台湾大学林轩田教授“机器学习基石”课程整理： 最简单的线性分类器——感知机（Perceptron）中学物课的时候相信大家都接触过“神经元”的概念，每一个神经元与其他神经元相连，当神经元“兴奋”时，就会向相连的神经元发送化学物质， 从而改变神经元内的电位，如果某个神经元的电位超过一个阈值（threshold），那么它就会被激活（“兴奋”），1943年，McCulloch和Pitts">
-<meta name="twitter:image" content="http://yoursite.com/2017/10/30/images/PLA/m-p-model.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/10/30/PLA/m-p-model.png">
 
 
 
@@ -379,30 +379,31 @@
       
         <p>PS：本文主要基于台湾大学林轩田教授“机器学习基石”课程整理：</p>
 <h3 id="最简单的线性分类器——感知机（Perceptron）"><a href="#最简单的线性分类器——感知机（Perceptron）" class="headerlink" title="最简单的线性分类器——感知机（Perceptron）"></a>最简单的线性分类器——感知机（Perceptron）</h3><p>中学物课的时候相信大家都接触过“神经元”的概念，每一个神经元与其他神经元相连，当神经元“兴奋”时，就会向相连的神经元发送化学物质， 从而改变神经元内的电位，如果某个神经元的电位超过一个阈值（threshold），那么它就会被激活（“兴奋”），1943年，McCulloch和Pitts将这种情形抽象成下面这个很简单的模型—”M-P神经元模型“。在这个模型中，神经元把来自$n$ 个其他神经元传递过来的输入信号，加权求和与神经元的阈值进行比较，然后通过”激活函数“ 处理产生神经元的输出。</p>
-<p><img src="../images/PLA/m-p-model.png" alt="m-p-model"></p>
+<p><img src="/2017/10/30/PLA/m-p-model.png" alt="m-p-model"></p>
 <p>$$Output=f(\sum_{i=1}^nw_ix_i-\theta)$$</p>
 <p>其中$f$为激活函数，$\theta$为阈值。 理想的激活函数是$sign$ ， 它将输入映射为输出值  $0$ 或 $1$ ，也就是说，通过这样一个简单的模型，就可以处理类似考试中类似判断（yes，no）的问题。在林教授的课程中，举了一个是否给用户发放信用卡的例子：银行可以根据顾客的个人信息来判断是否给顾客发放信用卡。将顾客抽象为一个向量X，包括姓名、年龄、年收入、负债数等。同时设定各个属性所占的比例向量W，对于正相关的属性设置相对较高的比例如年收入，对于负相关的属性设置较低的比例如负债数。y表示是应该向该用户发放信用卡。通过求X和W的内积减去一个阀值，若为正则同意发放信用卡，否则不发放信用卡。抽象为数学问题：</p>
-<p><img src="../images/PLA/f1.png" alt="f1"></p>
+<a id="more"></a>
+<p><img src="/2017/10/30/PLA/f1.png" alt="f1"></p>
 <p>如果我们令$-threshold$为$w_0$，令$+1$为$x_0$，则可以简化$h(\bf x)$为$sign(w^T\bf x$):</p>
-<p><img src="../images/PLA/f2.png" alt="f2"></p>
+<p><img src="/2017/10/30/PLA/f2.png" alt="f2"></p>
 <p>记得高中数学老师最让我收益匪浅的一句话就是“要总想着数形结合” ， 那么问题来了，$h(\bf x)$ 长什么样？</p>
 <p>首先考虑二维空间的情况，也就是说一个向量$\bf x$ （二维平面的一个点）只用两个坐标就可以确定了，这种情况下：</p>
-<p><img src="../images/PLA/f3.png" alt="f3"></p>
+<p><img src="/2017/10/30/PLA/f3.png" alt="f3"></p>
 <p>可以看到，$h$ 在二维平面上其实就是一条直线 =&gt;  三维空间是个平面  =&gt; 更高维空间是超平面。本人作为一个不算聪明的正常人，确实想象不出来高维空间是个什么鬼，但是从数学的角度来讲，100维也就是向量$\bf x$ 长高一些，本质上和二维空间没啥区别。所以接下来就基于“二维”来解释一些问题。</p>
 <p>如果就是在一个平面划线的话，大家如果乐意能划出来很多很多很多很多很多很多（hypothesis set）…… 问题是怎么找出来一条线可以把正负例样本（上图中的圈圈和叉叉）很好的分隔到线的两边。“我擦~请别侮辱我智商啊” 这个时候一定有小伙伴会这么想，对二维空间，在某些情况下我们确实可以很容易画一条分隔线，但是三维呢，四维呢，五维空间……呢？我肯定做不到，而且就算有神人做到了也没用，我们的目标是让计算机通过输入的$\bf x$ 和其对应的label y 从hypothesis set中找到这样一条线 $R^2$（或者超平面  $R^d$），问题又来了，hypothesis set有无限条线，让计算机去遍历岂不成了死循环了， 所以这个时候就需要通过一定的算法（learning algorithm)  来进行了。接下来将介绍一个非常简单的算法：<strong>P</strong>erceptron <strong>L</strong>earning <strong>A</strong>lgorithm （PLA）</p>
 <h3 id="PLA"><a href="#PLA" class="headerlink" title="PLA"></a>PLA</h3><p>正如上面所说的，让计算机去一个无限大的hypothesis set遍历出来一条我们目标的线是没有什么可行性的，所以PLA的一个基本思想是：先随便拿条线在手上，然后在所能看到的样本数据上不断的做修正（旋转那条线），如果数据是<strong>线性可分</strong>的，那么最后感知机得到的线肯定可以把两类数据分隔开。 用林教授的说法，这是一种“知错能改”的方法。我们先来考虑数据是线性可分的情况，PLA的核心部分其实只有两步，如下：</p>
-<p><img src="../images/PLA/f4.png" alt="f4"></p>
+<p><img src="/2017/10/30/PLA/f4.png" alt="f4"></p>
 <p>1） 对于被当前的线分对的点，不做任何处理，但如果发现分错的点则需要进行改错</p>
 <p>2）分错的点只有两种情况： $y$ 应该是$+1$ 可是$\bf w$ 和$\bf x$ 的内积为负，证明向量$\bf w$ 和$\bf x$的角度过大需要通过 $\bf w_{new}=\bf w+\bf x $ 来减小$\bf w$与$\bf x$之间的角度。 </p>
 <p>另外一种情况刚好相反： $y$ 应该为 $-1$ 可是$\bf w$ 和 $\bf x$ 的内积为正，说明向量 $\bf w$ 和 $\bf x$ 的角度过小需要通过 $\bf w_{new}=\bf w - \bf x$ 来增大$\bf w$ 和 $\bf x$ 之间的角度。</p>
 <p>此时，敏锐的小伙伴一定发现，这不就和熊瞎子扒玉米，又会让之前分对的点再次分错。是这样的，所以说PLA的终止条件不是说把输入的数据循环遍就ok了，而是每次修正完都要把全部的输入数据轮一遍，直到所有的点都被当前的线正确划分为止（所以也叫做Cyclic PLA），要达成这个终止条件，至少要有一个事情，就是输入数据要能够被一条线切开（线性可分），如果输入数据不存在这样一条线，那么PLA跑到海枯石烂也不会停下来。线性可分可以直观的用下图表示：</p>
-<p><img src="../images/PLA/f5.png" alt="f5"></p>
+<p><img src="/2017/10/30/PLA/f5.png" alt="f5"></p>
 <p>在前面我写过这样一句话：“<strong>如果输入数据是线性可分的，那么最后感知机得到的线肯定可以把两类数据分隔开</strong>”， 好吧，talk is always cheap， 请开始你的…………..“证明”</p>
 <p>算法证明（即线性可分可以让PLA终止）：</p>
-<p><img src="../images/PLA/f6.png" alt="f6"></p>
+<p><img src="/2017/10/30/PLA/f6.png" alt="f6"></p>
 <p>首先，数据是线性可分的，那么肯定存在一条线$\bf w_f$ 可以把所有的圈圈叉叉分开，然后根据 $\bf w_f$ 和</p>
 <p>不断修正的$\bf w_{t}$内积是不断增大的，说明我们所更新的那条线和完美的$\bf w_f$ 越来越相似 <strong>或者</strong> 我们所更新的向量模越来越大。那么接下来就看一下在PLA不断更新$\bf w_t$ 时，该向量的模是怎么变化的，现在引入PLA最重要的一个更新条件——只在错误的时候发生：</p>
-<p><img src="../images/PLA/f7.png" alt="f7"></p>
+<p><img src="/2017/10/30/PLA/f7.png" alt="f7"></p>
 <p>该过程告诉我们，每次修正$\bf w_t$ 时模确实会增加，但是增加有限（最大也就是最远那个点的模），所以说我们每次修正之后$\bf w_t$ 确实和$\bf w_f$ 越来越接近：</p>
 <p>从$\bf w_0$开始，在经过T次修正之后, 由上面提到的两个式子： </p>
 <p>$$\bf w_f^T w_t \ge w_f^T  w_t + min( y_n  w_f^T x_n) $$ </p>
@@ -421,9 +422,9 @@
 <p>$$T \le \frac{ max ||\bf x_n||^2 \cdot ||\bf w_f||^2}{min( y_n \bf w_f^T \bf x_n)^2 }$$</p>
 <p>这个式子告诉我们，对于一组线性可分的数据，PLA在一定的迭代次数内（T）是可以收敛的。</p>
 <h3 id="PLA改进——Pocket-Algorithm："><a href="#PLA改进——Pocket-Algorithm：" class="headerlink" title="PLA改进——Pocket Algorithm："></a>PLA改进——Pocket Algorithm：</h3><p>之前一直在说PLA算法必须是基于线性可分的数据的，但是实际去用的话会有两个问题：1） 大多数情况下我们是不知道输入数据是不是线性可分的  2）即使知道输入数据线性可分，在收集，整理数据过程中难免会带入“噪声” ，造成有些点是不可能被分开的：</p>
-<p><img src="../images/PLA/f8.png" alt="f8"></p>
+<p><img src="/2017/10/30/PLA/f8.png" alt="f8"></p>
 <p>针对这两个问题，提出一种改进的PLA算法——Pocket PLA： 因为直接解决上图argmin那个式子中找犯错最小的线到目前为止都是“千古难题”，所以Pocket PLA主要思路是找一条犯错尽可能少的线，它是先拿一条线在手上，然后发现有新的线犯的错更少，就把手上的线换成新的：</p>
-<p><img src="../images/PLA/f9.png" alt="f9"></p>
+<p><img src="/2017/10/30/PLA/f9.png" alt="f9"></p>
 
       
     </div>
